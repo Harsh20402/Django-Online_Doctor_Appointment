@@ -1,0 +1,92 @@
+{% load static %}
+<!-- Start of Html-->
+    {% include './basic.html' %}
+<!-- End of Html -->
+
+<!-- Start of Header and Nav Bar -->
+    {% include './navbar.html' %}
+<!-- End of Header and Nav Bar-->
+
+
+<!--Page Title-->
+<section class="page-title text-center" style="background-image:url({% static 'myapplications/images/background/3.jpg' %});">
+    <div class="container">
+        <div class="title-text">
+            <h1>Team</h1>
+            <ul class="title-menu clearfix">
+                <li>
+                    <a href="{% url 'home-page' %}">home &nbsp;/</a>
+                </li>
+                <li>Profile</li>
+            </ul>
+        </div>
+    </div>
+</section>
+<!--End Page Title-->
+
+<div class="container-fluid py-5">
+    <h1 class="display-5 text-center">All Doctors</h1>
+    {% if alldoc  %}
+        <table class="table table-bordered text-center">
+            <thead>
+                <tr style="border: 1px solid #ddd; padding: 8px;">
+                    <th style="padding-top: 12px; padding-bottom: 12px; text-align: left; background-color: #04AA6D; color: white;">
+                        Doctor Name
+                    </th>
+                    <th style="padding-top: 12px; padding-bottom: 12px; text-align: left; background-color: #04AA6D; color: white;">
+                        Qualification
+                    </th>
+                    <th style="padding-top: 12px; padding-bottom: 12px; text-align: left; background-color: #04AA6D; color: white;">
+                        Specialist
+                    </th>
+                    <th style="padding-top: 12px; padding-bottom: 12px; text-align: left; background-color: #04AA6D; color: white;">
+                        Year Of Experience
+                    </th>
+                    <th style="padding-top: 12px; padding-bottom: 12px; text-align: left; background-color: #04AA6D; color: white;">
+                        Available
+                    </th>
+                    <th style="padding-top: 12px; padding-bottom: 12px; text-align: left; background-color: #04AA6D; color: white;">
+                        Timing
+                    </th>
+                    <th style="padding-top: 12px; padding-bottom: 12px; text-align: left; background-color: #04AA6D; color: white;">
+                        Make
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for doc in alldoc %}
+                    <tr>
+                        <td style="background-color: #f2f2f2;">
+                            {{doc.d_name}}
+                        </td>
+                        <td>
+                            {{doc.d_qualification}}
+                        </td>
+                        <td style="background-color: #f2f2f2;">
+                            {{doc.d_specialist}}
+                        </td>
+                        <td>
+                            {{doc.d_yoe}}
+                        </td>
+                        <td style="background-color: #f2f2f2;">
+                            {{doc.days}}
+                        </td>
+                        <td>
+                            {{doc.time_slot}}
+                        </td>
+                        <td style="background-color: #f2f2f2;">
+                            <a href="/appoint/{{doc.d_id}}">Appointment</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+
+        </table>
+    {% else %}
+        <h3 class="text-center text-danger">Sorry No Doctor Is Found</h3>
+    {% endif %}
+</div>
+
+<!--footer-main-->
+    {% include './footer.html' %}
+<!-- End of footer-main-->

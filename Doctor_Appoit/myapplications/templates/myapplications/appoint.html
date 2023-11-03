@@ -1,0 +1,137 @@
+{% load static %}
+<!-- Start of Html-->
+    {% include './basic.html' %}
+<!-- End of Html -->
+
+<!-- Start of Header and Nav Bar -->
+    {% include './navbar.html' %}
+<!-- End of Header and Nav Bar-->
+
+
+<!--Page Title-->
+<section class="page-title text-center" style="background-image:url({% static 'myapplications/images/background/3.jpg' %});">
+    <div class="container">
+        <div class="title-text">
+            <h1>Patient Appointment</h1>
+            <ul class="title-menu clearfix">
+                <li>
+                    <a href="{% url 'home-page' %}">home &nbsp;/</a>
+                </li>
+                <li>Appointment</li>
+            </ul>
+        </div>
+    </div>
+</section>
+<!--End Page Title-->
+
+<!--==================================
+=            Contact Form            =
+===================================-->
+<section class="section contact">
+    <!-- container start -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <!-- address start -->
+                <div class="address-block">
+                    <!-- Location -->
+                    <div class="media">
+                        <i class="fa fa-map-o"></i>
+                        <div class="media-body">
+                            <h3>Location</h3>
+                            <p>PO Box 16122 Collins Street West
+                                <br>Victoria 8007 Canada</p>
+                        </div>
+                    </div>
+                    <!-- Phone -->
+                    <div class="media">
+                        <i class="fa fa-phone"></i>
+                        <div class="media-body">
+                            <h3>Phone</h3>
+                            <p>
+                                (+48) 564-334-21-22-34
+                                <br>(+48) 564-334-21-22-38
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Email -->
+                    <div class="media">
+                        <i class="fa fa-envelope-o"></i>
+                        <div class="media-body">
+                            <h3>Email</h3>
+                            <p>
+                                info@templatepath.com
+                                <br>info@cleanxer.com
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- address end -->
+            </div>
+            <div class="col-md-8">
+                <div class="contact-form">
+                    {% if alldoc %}
+                        <table class="table table-bordered text-center">
+                            <tbody>
+                                    <tr>
+                                {% for doc in alldoc %}
+                                        <td>Doctor Name</td>
+                                        <td>{{doc.d_name}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Doctor Qualification</td>
+                                        <td>{{doc.d_qualification}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Specialist</td>
+                                        <td>{{doc.d_specialist}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Year of Experience</td>
+                                        <td>{{doc.d_yoe}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Available</td>
+                                        <td>{{doc.days}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Timing</td>
+                                        <td>{{doc.time_slot}}</td>
+                                {% endfor %}
+                                    </tr>
+                            </tbody>
+                        </table>
+                        {% else %}
+                            <h3 class="text-center text-danger">Sorry No Doctor is found</h3>
+                        {% endif %}
+                        <form action="#" class="row" name="reg-frm" method="post">
+                            {% csrf_token %}
+                            <div class="row g-3">
+                                {% for frm in form %}
+                                    <div class="col-12">
+                                        {{frm.label}}
+                                        {{ frm }}
+                                        <label class="text-danger"> &nbsp;&nbsp;{{ frm.errors|striptags }}</label>
+                                    </div>
+                                {% endfor %}
+                                <div class="col-md-12 text-right">
+                                    <button class="btn btn-style-one" type="submit">Make Appointment</button>
+                                </div>
+                            </div>
+                        </form>
+                        {% if messages %}
+                            {% for msg in messages %}
+                                {{ msg }}
+                            {% endfor %}
+                        {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- container end -->
+</section>
+<!--====  End of Contact Form  ====-->
+
+<!--footer-main-->
+    {% include './footer.html' %}
+<!-- End of footer-main-->

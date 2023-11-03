@@ -1,0 +1,199 @@
+{% load static %}
+<!--header top-->
+<div class="header-top">
+      <div class="container clearfix">
+            <div class="top-left">
+                  <h6>Opening Hours : Saturday to Tuesday - 8am to 10pm</h6>
+            </div>
+            <div class="top-right">
+                  <ul class="social-links">
+                        <li>
+                              <a href="#">
+                                    <i class="fa fa-facebook" aria-hidden="true"></i>
+                              </a>
+                        </li>
+                        <li>
+                              <a href="#">
+                                    <i class="fa fa-twitter" aria-hidden="true"></i>
+                              </a>
+                        </li>
+                        <li>
+                              <a href="#">
+                                    <i class="fa fa-google-plus" aria-hidden="true"></i>
+                              </a>
+                        </li>
+                        <li>
+                              <a href="#">
+                                    <i class="fa fa-instagram" aria-hidden="true"></i>
+                              </a>
+                        </li>
+                        <li>
+                              <a href="#">
+                                    <i class="fa fa-pinterest-p" aria-hidden="true"></i>
+                              </a>
+                        </li>
+                  </ul>
+            </div>
+      </div>
+</div>
+<!--header top-->
+
+<!--Header Upper-->
+<section class="header-uper">
+      <div class="container clearfix">
+            <div class="logo">
+                  <figure>
+                        <a href="index.html">
+                              <img src="{% static 'myapplications/images/logo.png' %}" alt="" width="130">
+                        </a>
+                  </figure>
+            </div>
+            <div class="right-side">
+                  <ul class="contact-info">
+                        <li class="item">
+                              <div class="icon-box">
+                                    <i class="fa fa-envelope-o"></i>
+                              </div>
+                              <strong>Email</strong>
+                              <br>
+                              <a href="#">
+                                    <span>info@medic.com</span>
+                              </a>
+                        </li>
+                        <li class="item">
+                              <div class="icon-box">
+                                    <i class="fa fa-phone"></i>
+                              </div>
+                              <strong>Call Now</strong>
+                              <br>
+                              <span>+ (88017) - 123 - 4567</span>
+                        </li>
+                  </ul>
+                  <div class="link-btn">
+                        <a href="{% url 'registration-page' %}" class="btn-style-one">Register / Sign In</a>
+                  </div>
+                  <div class="link-btn">
+                        <a href="{% url 'appointment-page' %}" class="btn-style-one">Appointment</a>
+                  </div>
+            </div>
+      </div>
+</section>
+<!--Header Upper-->
+
+
+<!--Main Header-->
+{% with request.resolver_match.url_name as url_name %}
+      <nav class="navbar navbar-default">
+            <div class="container">
+                  <!-- Brand and toggle get grouped for better mobile display -->
+                  <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+                              aria-expanded="false">
+                              <span class="sr-only">Toggle navigation</span>
+                              <span class="icon-bar"></span>
+                              <span class="icon-bar"></span>
+                              <span class="icon-bar"></span>
+                        </button>
+                  </div>
+                  <!-- Collect the nav links, forms, and other content for toggling -->
+
+                  {% if request.user.is_authenticated %}
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                              <li class="{% if url_name == 'profile-page' %} active {% endif %}">
+                                    <a href="{% url 'profile-page' %}" >Hi {{request.user.first_name}}</a>
+                              </li>
+                              <li class="{% if url_name == 'appointment-page' %} active {% endif %}">
+                                    <a href="{% url 'apphist-page' %}">Appointment</a>
+                              </li>
+                              <li>
+                                                <a href="{% url 'password_change' %}">Change Password</a>
+                                          </li>
+                                          <li>
+                                                <a href="{% url 'chngpro-page' %}">Update Profile</a>
+                                          </li>
+                                          <li>
+                                                <a href="{% url 'logout-page' %}">Logout</a>
+                                          </li>
+<!--                              <li class="dropdown">-->
+<!--                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Settings-->
+<!--                                          <span class="caret"></span>-->
+<!--                                    </a>-->
+<!--                                    <ul class="dropdown-menu">-->
+<!--                                          <li>-->
+<!--                                                <a href="{% url 'password_change' %}">Change Password</a>-->
+<!--                                          </li>-->
+<!--                                          <li>-->
+<!--                                                <a href="{% url 'chngpro-page' %}">Update Profile</a>-->
+<!--                                          </li>-->
+<!--                                          <li>-->
+<!--                                                <a href="{% url 'logout-page' %}">Logout</a>-->
+<!--                                          </li>-->
+<!--                                    </ul>-->
+<!--                              </li>-->
+
+                        </ul>
+                  </div>
+                  {% else %}
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                              <li class="{% if url_name == 'home-page' %} active {% endif %}"">
+                                    <a href="{% url 'home-page' %}" >Home</a>
+                              </li>
+                              <li class="{% if url_name == 'about-page' %} active {% endif %}"">
+                                    <a href="{% url 'about-page' %}" >About</a>
+                              </li>
+                              <li class="{% if url_name == 'service-page' %} active {% endif %}">
+                                    <a href="{% url 'service-page' %}" >Service</a>
+                              </li>
+                              <li class="{% if url_name == 'gallery-page' %} active {% endif %}">
+                                    <a href="{% url 'gallery-page' %}" >Gallery</a>
+                              </li>
+                              <li class="{% if url_name == 'team-page' %} active {% endif %}">
+                                    <a href="{% url 'team-page' %}" >Team</a>
+                              </li>
+                              <li class="{% if url_name == 'appointment-page' %} active {% endif %}">
+                                    <a href="{% url 'appointment-page' %}" >Appointment</a>
+                              </li>
+                              <li class="{% if url_name == 'blog-page' %} active {% endif %}">
+                                    <a href="{% url 'blog-page' %}" >Blog</a>
+                              </li>
+                              <li class="{% if url_name == 'contact-page' %} active {% endif %}">
+                                    <a href="{% url 'contact-page' %}" >Contact</a>
+                              </li>
+
+                              <!-- <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown
+                                          <span class="caret"></span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                          <li>
+                                                <a href="#">Action</a>
+                                          </li>
+                                          <li>
+                                                <a href="#">Another action</a>
+                                          </li>
+                                          <li>
+                                                <a href="#">Something else here</a>
+                                          </li>
+                                          <li role="separator" class="divider"></li>
+                                          <li>
+                                                <a href="#">Separated link</a>
+                                          </li>
+                                          <li role="separator" class="divider"></li>
+                                          <li>
+                                                <a href="#">One more separated link</a>
+                                          </li>
+                                    </ul>
+                              </li> -->
+                        </ul>
+                  </div>
+                  {% endif %}
+                  <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container-fluid -->
+      </nav>
+<!--End Main Header -->
+{% endwith %}
+
+
